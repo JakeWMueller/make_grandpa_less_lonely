@@ -3,12 +3,15 @@ import random # to pick a random quote
 from super_secret import phone # hidden grandpa's phone number from you scammy Sammies
 import schedule # this will make the task wait until a certain time. Google python schedule library for more
 import time
+from datetime import datetime
 
-# reading from the quotes txt which makes an array then concatenating my good morning string and a randomly selected quote
+# reading from the quotes txt which makes an array. Then concatenating my good morning string, the day of the week, and a randomly selected quote
 quotes_list = open("quotes.txt")
 quotes = quotes_list.readlines()
 quotes_list.close()
-quote = 'Good morning, Grandpa! Here is the quote of the day: ' + (quotes[random.randint(0, len(quotes)-1)])
+today = (datetime.today().strftime('%A'))
+quote_of_the_day = (quotes[random.randint(0, len(quotes)-1)])
+quote = 'Good morning, Grandpa! Happy ' + today + '! Here is the quote of the day: ' + quote_of_the_day
 
 # textbelt allows one text a day. simply import requests and add the following 5 lines of code. print(resp.json()) will trigger the post method
 resp = requests.post('https://textbelt.com/text', {
